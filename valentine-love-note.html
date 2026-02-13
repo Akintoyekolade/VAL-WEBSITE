@@ -88,7 +88,7 @@
             position: fixed;
             top: 30px;
             right: 30px;
-            z-index: 1000;
+            z-index: 10001;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 50px;
@@ -493,7 +493,8 @@
         }
 
         .opened-letter.active {
-            display: block;
+            display: grid;
+            place-items: center;
         }
 
         @keyframes unfold {
@@ -871,7 +872,6 @@
             line-height: 1.6;
         }
 
-
         .gif-container img {
     max-width: 100%;
     height: auto;
@@ -888,6 +888,7 @@
     align-items: center;
     border-radius: 5px;
     overflow: hidden;
+    margin-top: 12px;
 }
 
 .gif-container-footer img {
@@ -940,6 +941,25 @@
 }
 
 
+.gif-container-open img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+}
+
+
+.gif-container-open {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
 
         /* Footer */
         .footer {
@@ -949,6 +969,8 @@
             color: var(--deep-rose);
             font-size: 1.1rem;
             animation: fadeInUp 1s ease-out 1.2s backwards;
+            display: grid;
+            place-items: center;
         }
 
         .footer .hearts {
@@ -1046,6 +1068,14 @@
     </style>
 </head>
 <body>
+
+    
+    <!-- Music Control -->
+    <div class="music-control" id="musicControl">
+        <span class="music-icon">🎵</span>
+        <span class="music-text">Play Music</span>
+    </div>
+
     <!-- Valentine's Proposal Page -->
     <div class="proposal-page" id="proposalPage">
         <div class="proposal-content">
@@ -1079,6 +1109,11 @@
 
         <!-- Opened Letter -->
         <div class="opened-letter" id="openedLetter">
+
+            <div class="gif-container-open">
+                <img src="Assets/Dog Love GIF.gif" alt="Dog Love">
+            </div>
+
             <div class="letter-paper">
                 <div class="letter-seal">❤️</div>
                 <div class="letter-content">
@@ -1109,12 +1144,6 @@
 
     <!-- Floating Hearts Background -->
     <div class="hearts-container" id="heartsContainer"></div>
-
-    <!-- Music Control -->
-    <div class="music-control" id="musicControl">
-        <span class="music-icon">🎵</span>
-        <span class="music-text">Play Music</span>
-    </div>
 
     <!-- Main Container -->
     <div class="container" id="mainContainer" style="display: none;">
@@ -1262,7 +1291,7 @@
         const musicControl = document.getElementById('musicControl');
 
         // Hide music control initially
-        musicControl.style.display = 'none';
+       // musicControl.style.display = 'flex';
 
         // YES Button Click
         yesButton.addEventListener('click', () => {
@@ -1284,7 +1313,7 @@
         continueButton.addEventListener('click', () => {
             letterPage.classList.remove('active');
             mainContainer.style.display = 'block';
-            musicControl.style.display = 'flex';
+
             
             // Scroll to top smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
